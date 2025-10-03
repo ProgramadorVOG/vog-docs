@@ -20,12 +20,13 @@ jobs:
     steps:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10.14
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v3
+        with:
+          package-manager: pnpm
+          pnpm-version: 10.14.0 # Or your desired pnpm version
           # path: . # La ubicación raíz de tu proyecto de Astro dentro del repositorio. (opcional)
           # node-version: 20 # La versión específica de Node que debería usarse para construir tu sitio. Por defecto es 20. (opcional)
           # package-manager: pnpm@latest # El gestor de paquetes de Node que debería usarse para instalar dependencias y construir tu sitio. Detectado automáticamente basado en tu lockfile. (opcional)
