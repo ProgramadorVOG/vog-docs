@@ -2,7 +2,6 @@
   "name": "al-docs",
   "type": "module",
   "version": "0.0.1",
-  "packagerManager": "pnpm@10.14",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
