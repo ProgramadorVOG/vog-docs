@@ -1,6 +1,7 @@
 ---
 title: Ambiente de desarrollo
 description: A guide in my new Starlight docs site.
+lastUpdated: true
 ---
 
 ### Visual Studio Code (Editor de Codigo)
