@@ -1,0 +1,65 @@
+---
+title: Colecciones
+description: A guide in my new Starlight docs site.
+lastUpdated: true
+---
+
+# Colecciones
+
+AL admite tres tipos de colecciones. Una colección es un tipo complejo que contiene múltiples valores en una variable. Todas esas colecciones están fuertemente tipificadas, lo que significa que no puede tener valores con diferentes tipos en la misma colección. Por ejemplo, no puede agregar valores de fecha en una colección que solo permite valores enteros. Los tres tipos de colecciones que AL admite son:
+
+- Array
+- List
+- Dictionary
+
+## Arrays
+
+Arrays son variables complejas que contienen un grupo de valores con el mismo tipo de datos. Una array se declara como una variable con los siguientes rasgos:
+
+- Un identificador
+- Un tipo de datos
+- Uno o más elementos
+- Un índice
+- Una dimensión
+
+Una array contiene varios valores. Estos valores se almacenan en los *elementos* de la array. Puede acceder a estos valores mediante el uso del índice, que también puede ser un valor almacenado en otra variable. Con este diseño, puede crear un bucle en el que incremente una determinada variable para recorrer cada elemento de una array. Puede definir cuántas dimensiones tendrá la array mediante el uso de la propiedad **Dimension**.
+
+```jsx
+SalesAmount: array[10] of Integer;
+```
+
+```jsx
+SalesAmount[5] := 0;
+```
+
+Tener solo un elemento entre corchetes indica que está utilizando una array unidimensional. Si desea tener una array multidimensional, utilice una lista separada por comas entre los corchetes, de la siguiente manera:
+
+```jsx
+SalesAmount: array[6,9] of Integer;
+```
+
+```jsx
+SalesAmount[5,3] := 0;
+```
+
+## Listas
+
+El tipo de datos **List** se puede comparar con una array. El tipo **List** solo se puede usar con tipos fundamentales y representa una lista de valores fuertemente tipificados a los que se puede acceder por índice.
+
+Por lo tanto, puede tener un tipo **List** de [Integer], pero no puede tener un tipo **List** de [Blob].
+
+Un tipo de datos **List** no requiere que defina cuántos elementos desea almacenar por adelantado (mientras que un tipo de datos **Array** sí lo requiere).
+
+El tipo de datos **List** tiene algunos métodos que se utilizan con frecuencia. Los métodos que están disponibles para un tipo de datos **List** se tratan en un módulo posterior de esta ruta de aprendizaje. No obstante, en la siguiente imagen se muestra cómo crear una nueva variable con un tipo de **List**.
+
+![list-data-type-ss.png](../../../../../assets/documentation/basic/list-data-type-ss.webp)
+
+## Diccionario
+
+El tipo de datos **Dictionary** utiliza la clase System.Collections.Generic.Dictionary `<TKey, TValue>` del .NET Framework, que le permite utilizar algunos métodos integrados. Este tipo de datos representa una colección de claves y valores.
+
+Cada clave que cree en este dicitionary debe ser única. La principal ventaja es que puede obtener inmediatamente el valor de una clave específica.
+
+El valor puede ser un tipo, pero también puede ser una **List** u otro tipo de datos **Dictionary**.
+
+![dictionary-data-type-ss.png](../../../../../assets/documentation/basic/dictionary-data-type-ss.webp)

@@ -1,0 +1,39 @@
+---
+title: Base 64
+description: A guide in my new Starlight docs site.
+lastUpdated: true
+---
+
+#  de Base64 en Business Central
+
+Business Central incluye el codeunit `Base64 Convert` para convertir datos binarios y texto en formato Base64, útil para integraciones con APIs, almacenamiento de archivos y transmisión segura de datos.
+
+
+Este módulo se encuentra en el namespace `System.Text` y ofrece varios métodos:
+
+### Métodos disponibles
+
+| Método | Descripción |
+|--------|-------------|
+| `ToBase64(String: Text): Text` | Convierte texto plano a Base64. |
+| `ToBase64(SecretString: SecretText): SecretText` | Convierte texto secreto a Base64. |
+| `ToBase64(String: Text, TextEncoding: TextEncoding): Text` | Permite especificar codificación. |
+| `ToBase64(String: Text, InsertLineBreaks: Boolean): Text` | Inserta saltos de línea cada 76 caracteres. |
+| `FromBase64(Base64Text: Text, OutStream: OutStream)` | Decodifica Base64 y lo escribe en un flujo. |
+
+---
+
+## Ejemplo
+
+```al
+procedure ConvertImageTextBase64ToTempBlob(ImageTextBase64: Text)
+var
+    TempBlob: Codeunit "Temp Blob";
+    Base64Convert: Codeunit "Base64 Convert";
+    OutStream: OutStream;
+begin
+    if ImageTextBase64 = '' then exit;
+    Clear(TempBlob);
+    TempBlob.CreateOutStream(OutStream);
+    Base64Convert.FromBase64(ImageTextBase64, OutStream);
+end;
