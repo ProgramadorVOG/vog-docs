@@ -1,0 +1,178 @@
+---
+title: Estandares AL
+description: A guide in my new Starlight docs site.
+---
+## Estructura de la extensión
+
+Una extensión está completamente contenida en una sola carpeta. Esta carpeta a menudo contiene varios archivos, como y archivos, tal vez un archivo de imagen que representa el logotipo de la extensión, varias carpetas para la fuente; , otros recursos; y una carpeta de prueba; carpeta. La extensión no necesita seguir una estructura plana, lo que significa que, dependiendo del número de archivos de la aplicación, se pueden usar carpetas adicionales en las carpetas "src" o "test" para agrupar objetos en función de su funcionalidad, lo que puede ayudar a facilitar el mantenimiento de un proyecto AL grande
+
+![sctructure.webp](/src/assets/guide/structure.webp)
+
+## Nomenclatura de archivos
+
+Cada nombre de archivo debe contener el nombre del objeto (usando solo los caracteres A-Z, a-z y 0-9), el tipo de objeto y la extensión del archivo. En la extensión, el nombre de cada nuevo objeto de aplicación (tabla, página, unidad de código) puede contener un prefijo o un sufijo.`.al`
+
+| Objetos completos | Extensiones |
+| --- | --- |
+| `<Nombre_Sufijo>.<NombreDeObjecto>.al` | `<nombre_Sufijo>.<NombreDeObjecto>Ext.al` |
+| `<Prefijo_nombre>.<NombreDeObjecto>.al` | `<Prefijo_nombre>.<NombreDeObjecto>Ext.al` |
+| `<Nombre>.<NombreDeObjecto>.al`  | `<Nombre>.<NombreDeObjecto>Ext.al` |
+
+
+Se deba las abreviaturas enumeradas para cada tipo de objeto en la nomenclatura del archivo
+
+| Object | Abbreviation |
+| --- | --- |
+| Page | Page |
+| Page Extension | PageExt |
+| Page Customization | PageCust |
+| Codeunit | Codeunit |
+| Table | Table |
+| Table Extension | TableExt |
+| XML Port | Xmlport |
+| Report | Report |
+| Request Page | RequestPage |
+| Query | Query |
+| Enum | Enum |
+| Enum Extension | EnumExt |
+| Control Add-ins | ControlAddin |
+| Dotnet | Dotnet |
+| Profile | Profile |
+| Interface | Interface |
+| Permission Set | PermissionSet |
+| Permission Set Extension | PermissionSetExt |
+
+## Objetos Enumerados
+
+En el caso de los objetos enumerados, estos ejemplos muestran cómo asignar un nombre a los archivos.
+
+| Nombre del objeto | Nombre de archivo |
+| --- | --- |
+| codeunit 70000000 MyPrefixSalesperson | `MyPrefixSalesperson.Codeunit.al` |
+| página 70000000 MiPrefijoVendedor | `MyPrefixSalesperson.Page.al` |
+| pageextension 70000000 MyPrefixSalesperson extiende "Tarjeta de cliente" | `MyPrefixSalesperson.PageExt.al` |
+
+# Formateo
+
+- Utilice todas las letras minúsculas para las palabras clave del idioma reservado.
+- Utilice cuatro espacios para la sangría.
+- Los corchetes siempre deben comenzar en una nueva línea. Si solo hay una propiedad, se puede colocar en una sola línea.
+
+```csharp
+page 123 PageName
+{
+    actions
+    {
+        area(Processing)
+        {
+            action(ActionName)
+            {
+                trigger OnAction()
+                begin
+                end;
+            }
+        }
+    }
+
+    var
+        TempCustomer: Record Customer temporary;
+
+    [EventSubscriber(ObjectType::Page, Page::"Item Card", 'OnAfterGetCurrRecordEvent', '', false, false)]
+    local procedure OnOpenItemCard(var rec: Record Item)
+    var
+        OnRecord: Option " ", Item, Contact;
+    begin
+        EnablePictureAnalyzerNotification(rec."No.", OnRecord::Item);
+    end;
+}
+```
+
+## Estructura de Archivos
+
+Dentro de un archivo de código .al, la estructura de todos los objetos debe seguir la secuencia:
+
+1. Propiedades
+2. Las construcciones específicas del objeto, como
+    - Campos de tabla
+    - Diseño de página
+    - Acciones
+    - Desencadenantes
+3. Variables globales
+    - Etiquetas
+    - Variables globales
+4. Métodos
+
+# Nomenclatura de variables
+
+- Las variables que hacen referencia a un objeto AL deben contener el nombre del objeto, abreviado cuando sea necesario.
+- Una variable debe comenzar con una letra mayúscula.
+- Se deben omitir los espacios en blanco, los puntos y otros caracteres (como paréntesis) que harían necesarias las comillas alrededor de una variable.
+- Si una variable es un compuesto de dos o más palabras o abreviaturas, cada palabra o abreviatura debe comenzar con una letra mayúscula
+
+### Ejemplo 1
+
+```csharp
+WIPBuffer: Record "Job WIP Buffer"
+JobWIPBuffer: Record "Job WIP Buffer" 
+```
+
+### Ejemplo 2
+
+```csharp
+Postline: Codeunit "Gen. Jnl.-Post Line";
+GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line";
+```
+
+### Ejemplo 3
+
+```csharp
+"Amount (LCY)": Decimal;
+AmountLCY: Decimal; 
+``` 
+
+## Declaración de método
+
+Para declarar un método:
+
+- Incluir un espacio después de un punto y coma al declarar varios argumentos.
+- El punto y coma se puede utilizar al final del end
+- Los métodos deben nombrarse usando PascalCase, como las variables.
+- Debe haber una línea en blanco entre las declaraciones de método
+
+```csharp
+local procedure MyProcedure(Customer: Record Customer; Int: Integer)
+begin
+end;
+
+// Blank line between methods
+
+local procedure MyProcedure2(Customer: Record Customer; Int: Integer)
+begin
+end;
+```
+
+## Métodos de llamada
+
+Al llamar a un método, incluya un espacio después de cada comando si va a pasar varios parámetros. Los paréntesis deben especificarse cuando se realiza una llamada al método o al sistema, como: 
+
+```csharp
+MyProcedure();
+MyProcedure(1);
+MyProcedure(1, 2); 
+```
+
+## Permisos
+
+Los permisos en AL permiten a los usuarios dar permiso a otros usuarios en función de sus necesidades particulares.
+
+### Tipos de Permisos
+
+| Valores de Permisos | Representacion | Descripción |
+| --- | --- | --- |
+| R o r | Leer | **R** para letura directa, **r** para acceso de lectura indirecta. |
+| I o i | Insertar | **I** para permiso de insercion directa, **i** para permiso de insercion indirecta. |
+| M o m | Modificar | **M** para permiso de modificacion directa, **m** para permiso de modificacion indirecta. |
+| D o d | Eliminar | **D** para permiso de eliminacion directa, **d** para permiso de eliminacion indirecta. |
+| X or x  | Execute (Run) | X para ejecutar permisos directamente, x para permisos de ejecucion indirecta. |
+
+![Ejemplo de permisos](/src/assets/guide/permissions.webp)

@@ -12,7 +12,7 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/ProgramadorVOG' }],
 			sidebar: [
 				{
-					label: 'AL',
+					label: 'Codigo AL',
 					collapsed: false,
 					items:[
 						{
