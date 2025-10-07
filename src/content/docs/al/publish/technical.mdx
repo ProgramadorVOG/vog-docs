@@ -1,0 +1,125 @@
+---
+title: Validación Técnica
+description: A guide in my new Starlight docs site.
+lastUpdated: true
+---
+
+- Desarrolle su extensión en Visual Studio Code
+
+### Archivo App.json
+
+- El archivo app.json contiene configuraciones obligatorias que debes incluir. Aquí también puedes leer más sobre la sintaxis de dependencia y la sintaxis de varios países o regiones para una sola aplicación.
+
+| Condiguraciones | Requerido | Valores |
+| --- | --- | --- |
+| id | Si | El identificador único de la extensión. Cuando el archivo se crea automáticamente, el identificador se establece en un nuevo valor GUID.**Nota:** El ID de la aplicación se usa en tiempo de ejecución para enlazar los nombres de tabla contenidos en la aplicación. Cambiar el ID de la aplicación hace que no se usen los datos de las tablas antiguas.`app.json` |
+| name | Si | El nombre único de la extensión. El nombre se puede cambiar para reflejar la marca o la adquisición, pero luego se debe incrementar.**Nota:** Otras extensiones pueden usar el nombre para expresar una dependencia en tiempo de compilación de la extensión. Cambiar el nombre de la extensión obliga a las extensiones que toman una dependencia a descargar símbolos y volver a compilar su extensión. |
+| publisher | Si | El nombre de su editor, por ejemplo: **NAV Partner**, **LLC.Nota:** Otras extensiones pueden usar el editor para expresar una dependencia en tiempo de compilación de la extensión. Cambiar el editor de la extensión obliga a las extensiones que toman una dependencia a descargar símbolos y volver a compilar su extensión. |
+| brief | No, pero es necesario para el envío de AppSource | Breve descripción de la extensión. |
+| description | No, pero es necesario para el envío de AppSource | Descripción más larga de la extensión. |
+| version | Si | La versión del paquete de la aplicación. |
+| privacyStatement | No, pero es necesario para el envío de AppSource | URL a la declaración de privacidad de la extensión. |
+| EULA | No, pero es necesario para el envío de AppSource | URL a los términos de licencia de la extensión. |
+| help | No, pero es necesario para el envío de AppSource | URL a una descripción en línea de la extensión que se centra en el contenido de ayuda y solución de problemas. El vínculo se usa en AppSource y puede ser el mismo que el valor de la propiedad. |
+| url | No, pero es necesario para el envío de AppSource | URL del paquete de extensión. El vínculo se utiliza en Business Central, en la página **Administración de extensiones**, como **sitio web**. Esta dirección URL puede ser un vínculo a una página de publicidad de la aplicación, una página que describe las características y más recursos además de la solución de problemas y la ayuda, o puede ser un vínculo para ponerse en contacto con el soporte técnico de la aplicación |
+| logo | No, pero es necesario para el envío de AppSource | Ruta de acceso relativa al logotipo del paquete de la aplicación desde la raíz del paquete. |
+| test | No | Versión del marco de pruebas dependiente en el formato X.Y.U.Z.**Nota:** Esta propiedad solo es compatible con Business Central versión 14 y anteriores, |
+| dependencies | No | Lista de dependencias para el paquete de extensión. Por ejemplo:.**Nota:** Para las dependencias de la aplicación del sistema y la aplicación base, ya no se enumeran como dependencias explícitas, sino que se capturan en la configuración como una referencia al paquete de aplicación. Deben tener un número de versión del paquete de aplicación. Ver más abajo. |
+| screenshots | No | Rutas relativas a las capturas de pantalla que deben estar en el paquete de extensión. |
+| platform | Sí, si se hace referencia a objetos del sistema en la extensió | La versión mínima admitida del archivo de paquete de plataforma, por ejemplo: "23.0.0.0". El nombre de archivo de esta referencia es |
+| application | Sí, si se hace referencia a la aplicación del sistema o a la aplicación base en la extensión. Necesario para el envío de AppSource | La versión soportada de la aplicación del sistema y el archivo del paquete de la aplicación base, por ejemplo: "23.1.0.0". El nombre de archivo de esta referencia es . *Local*: si la aplicación base está personalizada, el archivo Microsoft_Application_*.app se puede modificar para hacer referencia a la aplicación base personalizada con código. Es importante mantener la extensión, pero la información sobre el editor se puede cambiar y se puede cambiar el nombre del archivo .app. |
+| idRange | S | Intervalo para los identificadores de objeto de aplicación. Por ejemplo:. Para todos los objetos fuera del intervalo, se genera un error de compilación. Cuando crea nuevos objetos, se sugiere automáticamente un ID. |
+| showMyCode | No | De forma predeterminada, está configurado en y no es visible en el manifiesto. Para habilitar la visualización del código fuente al depurar una extensión, agregue la siguiente configuració |
+| target | No | De forma predeterminada, esto es . La configuración actualmente tiene las siguientes opciones: , , , y . La configuración y está en desuso con el tiempo de ejecución 4.0 y se reemplaza por y respectivamente. En el caso local, puede establecer esto para obtener acceso a las API restringidas y a .NET Interop. A continuación, la configuración de Business Central Server también debe establecerse en . |
+| contextSensitiveHelpUrl | No, pero es necesario para el envío de AppSourc | La dirección URL del sitio web que muestra ayuda contextual para los objetos de la aplicación, como . Si la aplicación no admite todas las configuraciones regionales admitidas actualmente por Business Central, incluya un parámetro para la configuración regional en esta URL y especifique también las configuraciones regionales relevantes en la configuración |
+| helpBaseUrl | No | La URL del sitio web que supera toda la Ayuda para las configuraciones regionales especificadas. Esta propiedad está pensada específicamente para aplicaciones de localización, ya que la configuración sobrescribe la dirección URL predeterminada |
+| supportedLocales | No | La lista de configuraciones regionales que se admiten en la Ayuda si es diferente de todas las configuraciones regionales. El valor de la lista se introduce en la dirección URL definida en las propiedades and. La primera configuración regional de la lista es la predeterminada. Un ejemplo es para una aplicación que solo admite danés e inglés (EE. UU.).`contextSensitiveHelpUrlhelpBaseUrl"supportedLocales": ["da-DK", "en-US"]` |
+| runtime | No | La versión del entorno de ejecución al que se dirige el proyecto. El proyecto se puede publicar en un servidor que admita la misma versión de tiempo de ejecución o una superior.  |
+| features | No | Especifica una lista de opciones.La opción genera una carpeta que se rellena con el archivo .xlf que contiene todas las etiquetas, propiedades de etiqueta y etiquetas de informe que usa en la extensión. La opción depende de la configuración. Genera subtítulos para objetos que no tienen un o especificado. A continuación, se escriben en el archivo .xlf. |
+| internalsVisibleTo | No | Especifica una lista de módulos que tienen acceso a los objetos marcados como utilizados por la propiedad **Access** del módulo actual.La sintaxis es |
+| propagateDependencies | No | Especifica si las dependencias directas de este proyecto deben propagarse como dependencias directas de proyectos que dependen de este. El valor predeterminado es . Si, se establece en then, las dependencias del paquete actual son visibles para los consumidores del paquete. |
+| preprocessorSymbols | No | Defines any symbols to use with preprocessor directives. The syntax is `"preprocessorSymbols": [ "DEBUG","PROD" ]`. Learn more in [Preprocessor Directives in AL](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/directives/devenv-directives-in-al). |
+| applicationInsightsConnectionString | No, pero se recomienda para el envío de AppSource | La clave de instrumentación del recurso de Azure Application Insights para supervisar operaciones, por ejemplo, como la recuperación de secretos de aplicación por extensiones. |
+| keyVaultUrls | No | Lista de direcciones URL de almacenes de claves de los que la extensión puede recuperar secretos. Todos los almacenes de claves deben pertenecer al mismo inquilino de Microsoft Entra. Por ejemplo:. |
+| suppressWarnings | No | Especifica que las advertencias emitidas por, por ejemplo, una regla de analizador específica no deben mostrarse en la ventana **Salida**. La sintaxis es . Por ejemplo. También es posible usar directivas para suprimir advertencias para áreas específicas de código. Obtenga más información en [Directiva de advertencia de Pragma](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/directives/devenv-directive-pragma-warning) y [Supresión de advertencias](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-deprecating-with-statements-overview#suppressing-warnings).`"suppressWarnings": [<warning ID>,<warning ID2>,...]"suppressWarnings": [ "AL0458" ]#pragma` |
+| resourceExposurePolicy | No | Define la accesibilidad de los recursos y el código fuente durante diferentes operaciones. La propiedad contiene cuatro opciones para definir el acceso: , , y . Todos los valores predeterminados son falsos. La sintaxis es . Obtenga más información en [Configuración de directiva de exposición de recursos](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-security-settings-and-ip-protection).`resourceExposurePolicyapplyToDevExtensionallowDebuggingallowDownloadingSourceincludeSourceInSymbolFile"resourceExposurePolicy": {"applyToDevExtension": true, "allowDebugging": true, "allowDownloadingSource": true, "includeSourceInSymbolFile": true}` |
+| source | No | Especifica las propiedades del control de código fuente. Las opciones son:, que es la URL del repositorio donde se encuentra el código fuente del proyecto., que es un identificador del código fuente de la versión actual del proyecto, que permite volver a la confirmación que desencadenó la creación de la extensión.La configuración se puede establecer dinámicamente como parte de las canalizaciones de compilación a través de parámetros de línea de comandos para el ejecutable del compilador alc.exe usado. Los valores pasados aquí sobrescriben los valores del archivo de código fuente app.json. |
+| build | No | Especifica las propiedades para compilar el paquete. Las opciones son:, que es útil para realizar un seguimiento del agente o sistema de compilación que orquestó la compilación, por ejemplo, AL-Go para GitHub., que se puede usar para la dirección URL de la invocación del sistema de compilación donde se puede encontrar la compilación.La configuración se puede establecer dinámicamente como parte de las canalizaciones de compilación a través de parámetros de línea de comandos para el ejecutable del compilador alc.exe usado. Los valores pasados aquí sobrescriben los valores del archivo de código fuente app.json. |
+| alternateIds | No | Los ID de las aplicaciones, que serán reemplazados por esta aplicación. Esta propiedad debe ser utilizada por aplicaciones que reemplazan la aplicación base. Especificado como una lista de uno o varios identificadores. |
+| resourceFolders | No | Especifica una lista de carpetas que contienen recursos que se van a empaquetar con esta extensión |
+
+
+### Fechas
+
+La codificación de **la fecha** debe seguir un formato específico (ya no es específico de la región). Use el formato aaaammddD. Por ejemplo, 20170825D.
+
+### Servicios HTTP y HTTPS
+
+Los servicios remotos (incluidas todas las llamadas a servicios web) pueden usar HTTP o HTTPS. Sin embargo, las llamadas HTTP solo son posibles mediante el tipo AL HttpRequest. Consulte la [descripción general de HTTP](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-restapi-overview/) para obtener más información sobre este tema.
+
+### Control Addin
+
+Solo se admiten complementos de cliente web basados en JavaScript. El compilador gestiona automáticamente el proceso de compresión. Simplemente incluya el nuevo tipo de complemento de control AL, las fuentes JavaScript y compile la aplicación. Consulte " Objeto de complemento de control" para obtener más información sobre este tema.
+
+### Firma Digital
+
+El archivo .app debe estar firmado digitalmente. Consulte [Firmar un archivo de paquete APP](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-sign-extension/) para obtener más información sobre este tema.
+
+ [Firmar un archivo de paquete APP](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-sign-extension/)
+
+### Documentación de escenario
+
+El documento del escenario de usuario debe contener los pasos detallados para todas las pruebas de configuración y validación del usuario. Consulte [la documentación del escenario de usuario](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/compliance/apptest-userscenario/) para obtener más información sobre este tema
+
+### Aplicacion de area en los controles
+
+Defina las áreas de aplicación aplicables a sus controles. Si no lo hace, el control no aparecerá en Dynamics 365 Business Central. Consulte [la propiedad Área de aplicación](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/properties/devenv-applicationarea-property/) para obtener más información sobre este tema.
+
+### Permisos
+
+Los conjuntos de permisos deben ser creados por la extensión y, al estar marcados, otorgar al usuario todas las funciones de configuración y uso. No se requiere que el usuario tenga permisos SUPER para configurar y usar la extensión. Consulte la siguiente información sobre este tema.
+
+### AddFirst y AddLast
+
+Usa " `addfirst`y `addlast`" para colocar tus acciones en las páginas de Business Central. Esto evita que la aplicación se dañe debido a cambios en el núcleo de Business Central. Consulta [Colocar acciones y controles](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-page-ext-object#using-keywords-to-place-actions-and-controls) para obtener más información sobre este tema.
+
+### Valor ToBeClassified
+
+• La clasificación de datos es obligatoria para los campos de todas las extensiones de tabla. La propiedad debe tener un valor distinto de "ToBeClassified". Consulte ["Clasificación de datos"](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-classifying-data/) para obtener más información sobre este tema.
+
+### OnBeforeCompanyOpen y OnAfterCompanyOpen
+
+• No utilice OnBeforeCompanyOpen ni OnAfterCompanyOpen. Consulte ["Sustitución de](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/compliance/apptest-onbeforecompanyopen/) estos eventos" para obtener más información sobre este tema.
+
+### Objetos Perfiles
+
+Debe usar el objeto Perfil para agregar perfiles en lugar de insertarlos en la tabla Perfiles. Consulte [Objeto Perfil](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-profile-object/) para obtener más información sobre este tema.
+
+### Prefijos y Sufijos
+
+Debe añadir un prefijo o sufijo al nombre de sus campos y objetos. Esto evita conflictos entre aplicaciones. Consulte la [sección "Beneficios y directrices"](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/compliance/apptest-prefix-suffix/) para obtener más información sobre este tema.
+
+### Servicios Web
+
+Las páginas y unidades de código diseñadas para exponerse como servicios web no deben generar ninguna interfaz de usuario que provoque una excepción en el código de llamada. Consulte [Restricciones de la interfaz de usuario para objetos expuestos como servicios web](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/compliance/apptest-webservices/) para obtener más información sobre este tema.
+
+### Codigo de Actualizacion
+
+Incluye el código de actualización adecuado para que tu aplicación se actualice correctamente entre versiones. Consulta ["Actualizar extensiones"](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-upgrading-extensions/) para obtener más información sobre este tema.
+
+### Probar Exhaustivamente
+
+Pruebe exhaustivamente su extensión en un entorno de Dynamics 365 Business Central. Consulte ["Probar su extensión"](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/compliance/apptest-testingyourextension/) para obtener más información sobre este tema.
+
+Antes de enviar la aplicación para validación, asegúrese de poder publicar, sincronizar, instalar, desinstalar y reinstalar su extensión. Esto debe hacerse en un entorno de Dynamics 365 Business Central. Consulte " [Cómo publicar su aplicación"](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-how-publish-and-install-an-extension-v2/) para obtener más información sobre este tema.
+
+### Paquetes de Pruebas
+
+Debe incluir un paquete de pruebas de Visual Studio Code con su extensión. Asegúrese de incluir la mayor cobertura de código posible. Consulte " [Probar la extensión de ejemplo avanzada"](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-extension-advanced-example-test/) para obtener más información sobre este tema.
+
+
+### Documento de Escenario
+
+El documento del escenario de usuario debe contener los pasos detallados para todas las pruebas de configuración y validación del usuario. Consulte [la documentación del escenario de usuario](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/compliance/apptest-userscenario/) para obtener más información sobre este tema.
+
+

@@ -23,12 +23,12 @@ export default defineConfig({
 						{
 							label: 'Publicar en Microsoft AppSource',
 							collapsed: false,
-							autogenerate: { directory: 'publish' },
+							autogenerate: { directory: 'al/publish' },
 						},
 						{
 							label: 'Referencias',
 							collapsed: false,
-							autogenerate: { directory: 'reference' },
+							autogenerate: { directory: 'al/reference' },
 						},
 					]
 				},
