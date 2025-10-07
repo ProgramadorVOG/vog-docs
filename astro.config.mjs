@@ -8,6 +8,12 @@ export default defineConfig({
 		starlight({
 			title: 'Virtual Office Group',
 			defaultLocale: 'es',
+			locales: {
+				root: {
+				label: 'Español',
+				lang: 'es', // Código de idioma
+				},
+			},
 			credits: false,
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/ProgramadorVOG' }],
 			sidebar: [
@@ -15,6 +21,17 @@ export default defineConfig({
 					label: 'Codigo AL',
 					collapsed: false,
 					items:[
+						{
+							label: 'Documentación',
+							collapsed: false,
+							items:[
+								{
+									label: 'Conceptos Basicos',
+									collapsed: false,
+									autogenerate: { directory: 'al/documentation/basic' }
+								},
+							]
+						},
 						{
 							label: 'Guia de desarrollo',
 							collapsed: false,
