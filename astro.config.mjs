@@ -18,6 +18,10 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/ProgramadorVOG' }],
 			sidebar: [
 				{
+					label: 'Introducción',
+					link: 'introduction',
+				},
+				{
 					label: 'Código AL',
 					collapsed: false,
 					items:[
@@ -101,6 +105,10 @@ export default defineConfig({
 								{
 									label: 'Servicios web',
 									link: 'al/documentation/webservices'
+								},
+								{
+									label: 'Manejo de JSON',
+									link: 'al/documentation/json'
 								},
 								{
 									label: 'Funciones Extras',
