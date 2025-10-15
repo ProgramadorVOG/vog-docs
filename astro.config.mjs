@@ -26,6 +26,24 @@ export default defineConfig({
 					collapsed: false,
 					items:[
 						{
+							label: 'Inicio',
+							collapsed: false,
+							items:[
+								{
+									label: 'Instalar ambiente de desarrollo',
+									link: 'al/documentation/starting/install'
+								},
+								{
+									label: 'Crear una nueva extensión',
+									link: 'al/documentation/starting/create_extension'
+								},
+								{
+									label: 'Crear aplicación para producción',
+									link: 'al/documentation/starting/create_app'
+								},
+							]
+						},
+						{
 							label: 'Documentación',
 							collapsed: false,
 							items:[
