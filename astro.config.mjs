@@ -157,5 +157,5 @@ export default defineConfig({
 		}),
 	],
 	site: 'https://ProgramadorVOG.github.io',
-  	base: '/vog-docs/',
+  	base: '',
 });
