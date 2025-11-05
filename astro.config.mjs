@@ -153,6 +153,16 @@ export default defineConfig({
 						}
 					]
 				},
+				{
+					label: 'Business Central',
+					collapsed: false,
+					items:[
+						{
+							label: 'Listado de proyectos',
+							link: 'proyects/general'
+						},
+					]
+				}
 			],
 		}),
 	],
