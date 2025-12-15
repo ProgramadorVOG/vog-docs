@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightImageZoom from 'starlight-image-zoom'
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
+			plugins: [starlightImageZoom()],
 			favicon: '/src/assets/logo.jpg',
 			title: 'Documentación',
 			defaultLocale: 'es',
@@ -23,12 +25,22 @@ export default defineConfig({
 					link: 'introduction',
 				},
 				{
-					label: 'Código AL',
-					collapsed: false,
+					label: 'Business Central',
+					collapsed: true,
+					items:[
+						{
+							label: 'Listado de proyectos',
+							link: 'proyects/general'
+						},
+					]
+				},
+				{
+					label: 'AL (Aplication Language)',
+					collapsed: true,
 					items:[
 						{
 							label: 'Inicio',
-							collapsed: false,
+							collapsed: true,
 							items:[
 								{
 									label: 'Instalar ambiente de desarrollo',
@@ -46,11 +58,10 @@ export default defineConfig({
 						},
 						{
 							label: 'Documentación',
-							collapsed: false,
+							collapsed: true,
 							items:[
 								{
 									label: 'Conceptos Basicos',
-									collapsed: false,
 									autogenerate: { directory: 'al/documentation/basic' }
 								},
 								{
@@ -131,35 +142,45 @@ export default defineConfig({
 								},
 								{
 									label: 'Funciones Extras',
-									collapsed: false,
+									collapsed: true,
 									autogenerate: { directory: 'al/documentation/procedureInternal' }
 								},
 							]
 						},
 						{
 							label: 'Guia de desarrollo',
-							collapsed: false,
+							collapsed: true,
 							autogenerate: { directory: 'al/guides' }
 						},
 						{
 							label: 'Publicar en AppSource',
-							collapsed: false,
+							collapsed: true,
 							autogenerate: { directory: 'al/publish' },
 						},
 						{
 							label: 'Referencias',
-							collapsed: false,
+							collapsed: true,
 							autogenerate: { directory: 'al/reference' },
 						}
 					]
 				},
 				{
-					label: 'Business Central',
-					collapsed: false,
+					label: 'CRM 365',
+					collapsed: true,
 					items:[
 						{
-							label: 'Listado de proyectos',
-							link: 'proyects/general'
+							label: 'Configuración',
+							collapsed: true,
+							items:[
+								{
+									label: 'Ventas',
+									link: 'crm/configuration/sales'
+								},
+								{
+									label: 'Atención al Cliente',
+									link: 'crm/configuration/customerservice'
+								},
+							]
 						},
 					]
 				}
