@@ -29,6 +29,16 @@ export default defineConfig({
 					collapsed: true,
 					items:[
 						{
+							label: 'Integraciones',
+							collapsed: true,
+							items:[
+								{
+									label: 'Excel con Business Central',
+									link: 'business/integration/excel'
+								}
+							]
+						},
+						{
 							label: 'Listado de proyectos',
 							link: 'proyects/general'
 						},
@@ -189,11 +199,7 @@ export default defineConfig({
 								{
 									label: 'Ventas Con Business Central',
 									link: 'crm/integration/sales'
-								},
-								{
-									label: 'Atención al Cliente',
-									link: 'crm/configuration/customerservice'
-								},
+								}
 							]
 						}
 					]
