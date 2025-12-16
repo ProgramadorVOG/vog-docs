@@ -1,0 +1,72 @@
+---
+title: Flujo de Proceso de Negocio - Gestión de Importaciones - Dynamics 365 Sales.
+lastUpdated: true
+---
+
+## Propósito del Flujo
+
+*Establecer un proceso estandarizado en Dynamics 365 Sales que guíe de manera sistemática cada operación de importación, asegurando el cumplimiento de requisitos críticos, la documentación completa y la correcta ejecución desde la cotización hasta la liberación aduanal.*
+
+## Fases del Proceso
+
+### 1. Calificación (Fase Permisos - Certificados)
+
+- *Confirmar estatus de permisos solicitados de importación*
+- *Registrar fechas de vencimiento para seguimiento.*
+
+### 2. Desarrollo (Contrato - Agente Aduanal)
+
+- *Validar agentes registrados en el sistema.*
+- *Asignación de embarque.*
+
+### 3. Proponer (Transporte - Seguro)
+
+- *Validar numero de póliza requerido*
+- *Coberturas adecuadas*
+- *Condiciones FOB*
+
+### 4. Cierre (Control Aduanero- Liberación)
+
+- *Se validan facturas*
+- *Inventario Actualizado*
+Estado Documental
+
+![imagen](../../../../src/assets/crm/flow/1.png)
+
+![imagen](../../../../src/assets/crm/flow/2.png)
+
+![imagen](../../../../src/assets/crm/flow/3.png)
+
+## Personalización del Formulario de Pedido para Procesos de Importación
+
+Para soportar el flujo de gestión de importaciones, se ha extendido el formulario estándar de Pedido (Order) en Dynamics 365 Sales, incorporando campos específicos que capturan información crítica requerida para operaciones de comercio internacional.
+
+![imagen](../../../../src/assets/crm/flow/4.png)
+
+***Explicación Detallada de Campos Personalizados para Importaciones.***
+
+**1. Campo: Nombre de Proveedor. 
+Almacena el fabricante o exportador extranjero**
+
+**2. Campo: Factura Validada** 
+
+Verificación y aprobación formal de la **factura comercial internacional** por parte del equipo de comercio exterior
+**3. Campo: Inventario Actualizado**
+
+ *Indica que las existencias de la mercancía importada han sido registradas correctamente en el sistema de inventarios de la empresa.*
+
+**4. Campo: Numero de Póliza** 
+
+Identificador único asignado por la compañía aseguradora que ampara los riesgos durante el transporte internacional de la mercancía.
+
+*La implementación del flujo de proceso de negocio para gestión de importaciones en Dynamics 365 Sales puede estandarizar y optimizar todas las operaciones de comercio exterior.*
+
+*Mediante la creación de un proceso guiado con fases claras y la incorporación de campos específicos en el formulario de pedidos.*
+
+- *Este proceso fue creado en la apps de Dynamisc - custom.*
+
+*https://vog.crm.dynamics.com/main.aspx?app=d365default&forceUCI=1&pagetype=entitylist&etn=activitypointer&viewid=00000000-0000-0000-00aa-000010001899&viewType=1039*
+
+*se añade a la apps de Sales Hub.*
+
+*https://vog.crm.dynamics.com/main.aspx?appid=94cad493-a048-ed11-bba2-000d3a5ba08b&pagetype=entityrecord&etn=salesorder*

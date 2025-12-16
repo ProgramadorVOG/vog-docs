@@ -201,6 +201,10 @@ export default defineConfig({
 									link: 'crm/integration/sales'
 								}
 							]
+						},
+						{
+							label:'Flujo de proceso',
+							link: 'crm/flow'
 						}
 					]
 				}
