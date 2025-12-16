@@ -182,6 +182,20 @@ export default defineConfig({
 								},
 							]
 						},
+						{
+							label: 'Integración',
+							collapsed: true,
+							items:[
+								{
+									label: 'Ventas Con Business Central',
+									link: 'crm/integration/sales'
+								},
+								{
+									label: 'Atención al Cliente',
+									link: 'crm/configuration/customerservice'
+								},
+							]
+						}
 					]
 				}
 			],
